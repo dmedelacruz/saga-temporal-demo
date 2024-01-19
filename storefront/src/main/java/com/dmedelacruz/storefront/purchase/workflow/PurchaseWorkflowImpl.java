@@ -1,16 +1,12 @@
 package com.dmedelacruz.storefront.purchase.workflow;
 
-import com.dmedelacruz.storefront.purchase.activity.InventoryActivity;
 import com.dmedelacruz.storefront.purchase.activity.OrderActivity;
-import com.dmedelacruz.storemodel.inventory.UpdateInventoryRequest;
+import com.dmedelacruz.storefront.purchase.activity.PurchaseActivity;
 import com.dmedelacruz.storemodel.order.CreateOrderResponse;
 import com.dmedelacruz.storemodel.storefront.PurchaseRequest;
 import com.dmedelacruz.storemodel.storefront.PurchaseResponse;
-import io.temporal.failure.ActivityFailure;
 import io.temporal.workflow.Saga;
 import io.temporal.workflow.Workflow;
-
-import java.util.concurrent.CompletableFuture;
 
 public class PurchaseWorkflowImpl implements PurchaseWorkflow {
 
@@ -18,7 +14,7 @@ public class PurchaseWorkflowImpl implements PurchaseWorkflow {
     private final Saga saga = new Saga(sagaOptions);
 
     private final OrderActivity orderActivity = Workflow.newActivityStub(OrderActivity.class, OrderActivity.orderActivityOptions);
-    private final InventoryActivity inventoryActivity = Workflow.newActivityStub(InventoryActivity.class, InventoryActivity.inventoryActivityOptions);
+    private final PurchaseActivity purchaseActivity = Workflow.newActivityStub(PurchaseActivity.class, PurchaseActivity.purchaseActivityOptions);
 
 
     @Override
@@ -30,8 +26,7 @@ public class PurchaseWorkflowImpl implements PurchaseWorkflow {
             CreateOrderResponse createdOrder = orderActivity.createOrder(purchaseRequest);
 
             //TODO persist Order PurchaseTable
-
-            //TODO create child workflows to process order
+            purchaseActivity.processOrder(createdOrder.getOrderId(), purchaseRequest);
 
             return PurchaseResponse.builder()
                     .customerId(createdOrder.getCustomerId())
@@ -40,7 +35,6 @@ public class PurchaseWorkflowImpl implements PurchaseWorkflow {
                     .build();
 
         } catch (Exception e) {
-            //TODO
             e.printStackTrace();
             return null;
         }

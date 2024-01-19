@@ -1,7 +1,6 @@
 package com.dmedelacruz.storefront.purchase.workflow;
 
 import com.dmedelacruz.storemodel.storefront.PurchaseRequest;
-import com.dmedelacruz.storemodel.storefront.PurchaseResponse;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.common.RetryOptions;
 import io.temporal.workflow.WorkflowInterface;
@@ -10,12 +9,12 @@ import io.temporal.workflow.WorkflowMethod;
 import java.util.UUID;
 
 @WorkflowInterface
-public interface PurchaseWorkflow {
+public interface ProcessOrderWorkflow {
 
-    String TASK_QUEUE = PurchaseWorkflow.class.getSimpleName() + "_queue";
+    String TASK_QUEUE = ProcessOrderWorkflow.class.getSimpleName() + "_queue";
 
     @WorkflowMethod
-    PurchaseResponse processPurchase(PurchaseRequest purchaseRequest);
+    void processOrder(String orderId, PurchaseRequest purchaseRequest);
 
     static RetryOptions retryOptions() {
         return RetryOptions.newBuilder()

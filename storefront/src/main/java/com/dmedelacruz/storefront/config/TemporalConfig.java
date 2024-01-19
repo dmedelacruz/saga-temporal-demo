@@ -1,6 +1,10 @@
 package com.dmedelacruz.storefront.config;
 
+import com.dmedelacruz.storefront.purchase.activity.InventoryActivityImpl;
 import com.dmedelacruz.storefront.purchase.activity.OrderActivityImpl;
+import com.dmedelacruz.storefront.purchase.activity.PurchaseActivityImpl;
+import com.dmedelacruz.storefront.purchase.workflow.ProcessOrderWorkflow;
+import com.dmedelacruz.storefront.purchase.workflow.ProcessOrderWorkflowImpl;
 import com.dmedelacruz.storefront.purchase.workflow.PurchaseWorkflow;
 import com.dmedelacruz.storefront.purchase.workflow.PurchaseWorkflowImpl;
 import com.google.protobuf.util.Durations;
@@ -71,7 +75,15 @@ public class TemporalConfig {
     public Worker purchaseWorkflowWorker(WorkerFactory workerFactory) {
         Worker worker = workerFactory.newWorker(PurchaseWorkflow.TASK_QUEUE);
         worker.registerWorkflowImplementationTypes(PurchaseWorkflowImpl.class);
-        worker.registerActivitiesImplementations(new OrderActivityImpl());
+        worker.registerActivitiesImplementations(new OrderActivityImpl(), new PurchaseActivityImpl());
+        return worker;
+    }
+
+    @Bean
+    public Worker processOrderWorkflow(WorkerFactory workerFactory) {
+        Worker worker = workerFactory.newWorker(ProcessOrderWorkflow.TASK_QUEUE);
+        worker.registerWorkflowImplementationTypes(ProcessOrderWorkflowImpl.class);
+        worker.registerActivitiesImplementations(new InventoryActivityImpl());
         return worker;
     }
 
