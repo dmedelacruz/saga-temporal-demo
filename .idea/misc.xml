@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/inventory-service" />
+    <file type="web" url="file://$PROJECT_DIR$/logistics-service" />
+    <file type="web" url="file://$PROJECT_DIR$/notifications-service" />
+    <file type="web" url="file://$PROJECT_DIR$/order-service" />
+    <file type="web" url="file://$PROJECT_DIR$/payment-service" />
+    <file type="web" url="file://$PROJECT_DIR$/storefront" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="477fd52d-b4bf-4c1c-82a1-5fddd2f08269" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="graalvm-17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
