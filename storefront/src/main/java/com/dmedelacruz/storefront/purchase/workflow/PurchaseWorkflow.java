@@ -1,6 +1,7 @@
 package com.dmedelacruz.storefront.purchase.workflow;
 
-import com.dmedelacruz.storefront.purchase.dto.PurchaseRequest;
+import com.dmedelacruz.storemodel.storefront.PurchaseRequest;
+import com.dmedelacruz.storemodel.storefront.PurchaseResponse;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.common.RetryOptions;
 import io.temporal.workflow.WorkflowInterface;
@@ -14,7 +15,7 @@ public interface PurchaseWorkflow {
     final String TASK_QUEUE = PurchaseWorkflow.class.getSimpleName() + "_queue";
 
     @WorkflowMethod
-    void processPurchase(PurchaseRequest purchaseRequest);
+    PurchaseResponse processPurchase(PurchaseRequest purchaseRequest);
 
     static RetryOptions retryOptions() {
         return RetryOptions.newBuilder()

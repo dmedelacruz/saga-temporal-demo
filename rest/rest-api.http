@@ -1,0 +1,18 @@
+POST http://localhost:9001/order
+Content-Type: application/json
+
+{
+  "customerId" : "1",
+  "items": []
+}
+
+###
+POST http://localhost:9000/store/purchase
+Content-Type: application/json
+
+{
+  "customerId": "1"
+}
+
+<> 2024-01-19T183335.200.json
+

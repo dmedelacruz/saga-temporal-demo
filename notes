@@ -1,0 +1,12 @@
+
+Can use workflowId for audit trail investigation
+
+Purchase Flow:
+   Create Order -> Check and Update Inventory -> Process Payment -> Process Logistics -> Notify User
+
+Failure Scenarios:
+    - Order Creation Failed
+    - Say for example Item stock is not updated at real time, User A sees that the item is still on stock, but User B already made a successful purchase of the same item which makes it out of stock. User A purchase will then fail. (Should not retry)
+    - Payment Processing failed (Should not retry)
+    - Purchase Delivery failed (Should not retry)
+    - Notification service is down. It should retry.

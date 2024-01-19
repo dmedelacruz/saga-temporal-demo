@@ -1,5 +1,8 @@
 package com.dmedelacruz.storefront.config;
 
+import com.dmedelacruz.storefront.purchase.activity.OrderActivityImpl;
+import com.dmedelacruz.storefront.purchase.workflow.PurchaseWorkflow;
+import com.dmedelacruz.storefront.purchase.workflow.PurchaseWorkflowImpl;
 import com.google.protobuf.util.Durations;
 import io.temporal.api.workflowservice.v1.ListNamespacesRequest;
 import io.temporal.api.workflowservice.v1.RegisterNamespaceRequest;
@@ -7,6 +10,7 @@ import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowClientOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.serviceclient.WorkflowServiceStubsOptions;
+import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +25,8 @@ import java.util.stream.Collectors;
 @Configuration
 public class TemporalConfig {
 
-    @Value("${temporal.endpoint}")
-    private String TARGET_ENDPOINT;
+//    @Value("${temporal.endpoint}")
+//    private String TARGET_ENDPOINT;
 
     @Value("${temporal.namespace}")
     private String NAMESPACE;
@@ -63,5 +67,12 @@ public class TemporalConfig {
         return WorkerFactory.newInstance(workflowClient);
     }
 
+    @Bean
+    public Worker purchaseWorkflowWorker(WorkerFactory workerFactory) {
+        Worker worker = workerFactory.newWorker(PurchaseWorkflow.TASK_QUEUE);
+        worker.registerWorkflowImplementationTypes(PurchaseWorkflowImpl.class);
+        worker.registerActivitiesImplementations(new OrderActivityImpl());
+        return worker;
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.dmedelacruz.storefront.purchase.dto;
+package com.dmedelacruz.storemodel.order;
 
 import lombok.*;
 
@@ -9,9 +9,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PurchaseRequest {
+public class CreateOrderRequest {
     private String customerId;
     private List<String> items;
-    private String shippingAddressId;
-    private String paymentInfoId;
 }

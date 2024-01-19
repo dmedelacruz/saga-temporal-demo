@@ -1,0 +1,13 @@
+server:
+  port: 9000
+
+temporal:
+  namespace: storefront
+
+restclient:
+  order:
+    name: OrderRestClient
+    url: http://localhost:9001
+  inventory:
+    name: InventoryRestClient
+    url: http://localhost:9002

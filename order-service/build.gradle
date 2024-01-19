@@ -21,34 +21,37 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('springModulithVersion', "1.1.0")
-}
+//ext {
+//    set('springModulithVersion', "1.1.0")
+//}
 
 dependencies {
+
+    implementation 'com.dmedelacruz:store-model'
+
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.modulith:spring-modulith-starter-core'
-    implementation 'org.springframework.modulith:spring-modulith-starter-jdbc'
-    implementation 'org.springframework.modulith:spring-modulith-starter-jpa'
+//    implementation 'org.springframework.modulith:spring-modulith-starter-core'
+//    implementation 'org.springframework.modulith:spring-modulith-starter-jdbc'
+//    implementation 'org.springframework.modulith:spring-modulith-starter-jpa'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+//    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
     runtimeOnly 'org.postgresql:postgresql'
-    runtimeOnly 'org.springframework.modulith:spring-modulith-actuator'
-    runtimeOnly 'org.springframework.modulith:spring-modulith-observability'
+//    runtimeOnly 'org.springframework.modulith:spring-modulith-actuator'
+//    runtimeOnly 'org.springframework.modulith:spring-modulith-observability'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
+//    testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.modulith:spring-modulith-bom:${springModulithVersion}"
-    }
-}
+//dependencyManagement {
+//    imports {
+//        mavenBom "org.springframework.modulith:spring-modulith-bom:${springModulithVersion}"
+//    }
+//}
 
 tasks.named('test') {
     useJUnitPlatform()
