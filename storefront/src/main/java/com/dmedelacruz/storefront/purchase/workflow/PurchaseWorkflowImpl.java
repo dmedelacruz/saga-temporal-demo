@@ -1,5 +1,6 @@
 package com.dmedelacruz.storefront.purchase.workflow;
 
+import com.dmedelacruz.storefront.purchase.activity.InventoryActivity;
 import com.dmedelacruz.storefront.purchase.activity.OrderActivity;
 import com.dmedelacruz.storefront.purchase.activity.PurchaseActivity;
 import com.dmedelacruz.storemodel.order.CreateOrderResponse;
@@ -14,8 +15,8 @@ public class PurchaseWorkflowImpl implements PurchaseWorkflow {
     private final Saga saga = new Saga(sagaOptions);
 
     private final OrderActivity orderActivity = Workflow.newActivityStub(OrderActivity.class, OrderActivity.orderActivityOptions);
+    private final InventoryActivity inventoryActivity = Workflow.newActivityStub(InventoryActivity.class, InventoryActivity.inventoryActivityOptions);
     private final PurchaseActivity purchaseActivity = Workflow.newActivityStub(PurchaseActivity.class, PurchaseActivity.purchaseActivityOptions);
-
 
     @Override
     public PurchaseResponse processPurchase(PurchaseRequest purchaseRequest) {

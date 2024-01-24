@@ -1,17 +1,8 @@
-POST http://localhost:9001/order
-Content-Type: application/json
-
-{
-  "customerId" : "1",
-  "items": []
-}
-
-###
 POST http://localhost:9000/store/purchase
 Content-Type: application/json
 
 {
-  "customerId": "1"
+  "customerId": "97c17607-5edc-47ed-9274-46be85e51501"
 }
 
 <> 2024-01-19T183335.200.json

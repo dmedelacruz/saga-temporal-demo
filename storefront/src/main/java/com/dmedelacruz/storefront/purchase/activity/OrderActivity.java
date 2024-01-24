@@ -1,6 +1,9 @@
 package com.dmedelacruz.storefront.purchase.activity;
 
+import com.dmedelacruz.storemodel.inventory.UpdateInventoryRequest;
 import com.dmedelacruz.storemodel.order.CreateOrderResponse;
+import com.dmedelacruz.storemodel.order.OrderStatus;
+import com.dmedelacruz.storemodel.order.UpdateOrderResponse;
 import com.dmedelacruz.storemodel.storefront.PurchaseRequest;
 import io.temporal.activity.ActivityInterface;
 import io.temporal.activity.ActivityMethod;
@@ -14,6 +17,9 @@ public interface OrderActivity {
 
     @ActivityMethod
     CreateOrderResponse createOrder(PurchaseRequest purchaseRequest);
+
+    @ActivityMethod
+    UpdateOrderResponse updateOrderStatus(String orderId, OrderStatus orderStatus);
 
     RetryOptions retryOptions = RetryOptions.newBuilder()
             .setInitialInterval(Duration.ofSeconds(5))

@@ -1,0 +1,15 @@
+/.idea/
+/inventory-service/.gradle/
+/inventory-service/build/
+/logistics-service/.gradle/
+/logistics-service/build/
+/notifications-service/.gradle/
+/notifications-service/build/
+/order-service/.gradle/
+/order-service/build/
+/payment-service/.gradle/
+/payment-service/build/
+/store-model/.gradle/
+/store-model/build/
+/storefront/.gradle/
+/storefront/build/

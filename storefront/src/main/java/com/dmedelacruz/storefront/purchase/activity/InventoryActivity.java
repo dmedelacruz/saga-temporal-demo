@@ -15,6 +15,9 @@ public interface InventoryActivity {
     @ActivityMethod
     UpdateInventoryResponse updateInventory(UpdateInventoryRequest updateInventoryRequest);
 
+    @ActivityMethod
+    UpdateInventoryResponse updateInventoryReversePurchase(UpdateInventoryRequest updateInventoryRequest);
+
     RetryOptions retryOptions = RetryOptions.newBuilder()
             .setInitialInterval(Duration.ofMinutes(1))
             .setMaximumInterval(Duration.ofMinutes(10))

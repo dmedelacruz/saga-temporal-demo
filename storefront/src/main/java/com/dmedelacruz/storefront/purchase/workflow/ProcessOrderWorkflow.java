@@ -6,6 +6,7 @@ import io.temporal.common.RetryOptions;
 import io.temporal.workflow.WorkflowInterface;
 import io.temporal.workflow.WorkflowMethod;
 
+import java.time.Duration;
 import java.util.UUID;
 
 @WorkflowInterface
@@ -18,7 +19,8 @@ public interface ProcessOrderWorkflow {
 
     static RetryOptions retryOptions() {
         return RetryOptions.newBuilder()
-                .setMaximumAttempts(1)
+                .setInitialInterval(Duration.ofSeconds(20))
+                .setMaximumAttempts(3)
                 .build();
     }
 

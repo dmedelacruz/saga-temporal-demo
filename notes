@@ -2,7 +2,13 @@
 Can use workflowId for audit trail investigation
 
 Purchase Flow:
-   Create Order -> Check and Update Inventory -> Process Payment -> Process Logistics -> Notify User
+   Create Order -> Check and Update Inventory -> Process Payment -> Notify User
+
+Order Status:
+ - Created :
+ - InProcess :
+ - Cancelled Successfully :
+ - Cancelled with Errors
 
 Failure Scenarios:
     - Order Creation Failed

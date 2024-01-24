@@ -1,0 +1,42 @@
+POST http://localhost:9003/payment
+Content-Type: application/json
+
+{
+  "paymentDetails" : {
+    "paymentMethod" : "WALLET",
+    "customerId" : "a",
+    "orderId" : "a",
+    "amountPaid" : 1000
+  },
+  "paymentMethod": "WALLET"
+}
+
+###
+
+POST http://localhost:9003/payment
+Content-Type: application/json
+
+{
+  "paymentDetails" : {
+    "paymentMethod" : "CARD",
+    "customerId" : "a",
+    "orderId" : "a",
+    "amountPaid" : 100000
+  },
+  "paymentMethod": "CARD"
+}
+
+###
+
+POST http://localhost:9003/payment
+Content-Type: application/json
+
+{
+  "paymentDetails" : {
+    "paymentMethod" : "CASH",
+    "customerId" : "a",
+    "orderId" : "a",
+    "amountPaid" : 1000
+  },
+  "paymentMethod": "CASH"
+}

@@ -1,5 +1,8 @@
 package com.dmedelacruz.storemodel.storefront;
 
+import com.dmedelacruz.storemodel.inventory.ItemQtyDto;
+import com.dmedelacruz.storemodel.payment.PaymentDetails;
+import com.dmedelacruz.storemodel.payment.PaymentMethod;
 import lombok.*;
 
 import java.util.List;
@@ -11,7 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 public class PurchaseRequest {
     private String customerId;
-    private List<String> items;
+    private List<ItemQtyDto> items;
     private String shippingAddressId;
-    private String paymentInfoId;
+    private PaymentMethod paymentMethod;
+    private PaymentDetails paymentDetails;
 }

@@ -2,9 +2,7 @@ package com.dmedelacruz.storefront.purchase.service;
 
 import com.dmedelacruz.storefront.external.restclient.OrderRestClient;
 import com.dmedelacruz.storemodel.RestResponse;
-import com.dmedelacruz.storemodel.order.CreateOrderException;
-import com.dmedelacruz.storemodel.order.CreateOrderRequest;
-import com.dmedelacruz.storemodel.order.CreateOrderResponse;
+import com.dmedelacruz.storemodel.order.*;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,11 +32,19 @@ public class OrderServiceImpl implements OrderService {
             if(createdOrder.getIsSuccess()) {
                 return createdOrder;
             } else {
-                throw new CreateOrderException("Error Creating Order");
+                throw new CreateOrderException();
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new CreateOrderException("Error Creating Order");
+            throw new CreateOrderException();
         }
+    }
+
+    @Override
+    public UpdateOrderResponse updateOrderStatus(String orderId, OrderStatus orderStatus) {
+        ResponseEntity<RestResponse<UpdateOrderResponse>> response = orderRestClient.updateOrderStatus(orderId, orderStatus.name());
+        if(!response.getStatusCode().is2xxSuccessful()) {
+            throw new UpdateOrderException();
+        }
+        return response.getBody().getContent();
     }
 }

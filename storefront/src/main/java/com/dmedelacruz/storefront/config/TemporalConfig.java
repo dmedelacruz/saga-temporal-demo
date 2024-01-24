@@ -75,7 +75,7 @@ public class TemporalConfig {
     public Worker purchaseWorkflowWorker(WorkerFactory workerFactory) {
         Worker worker = workerFactory.newWorker(PurchaseWorkflow.TASK_QUEUE);
         worker.registerWorkflowImplementationTypes(PurchaseWorkflowImpl.class);
-        worker.registerActivitiesImplementations(new OrderActivityImpl(), new PurchaseActivityImpl());
+        worker.registerActivitiesImplementations(new OrderActivityImpl(), new InventoryActivityImpl(), new PurchaseActivityImpl());
         return worker;
     }
 
@@ -83,7 +83,7 @@ public class TemporalConfig {
     public Worker processOrderWorkflow(WorkerFactory workerFactory) {
         Worker worker = workerFactory.newWorker(ProcessOrderWorkflow.TASK_QUEUE);
         worker.registerWorkflowImplementationTypes(ProcessOrderWorkflowImpl.class);
-        worker.registerActivitiesImplementations(new InventoryActivityImpl());
+        worker.registerActivitiesImplementations(new OrderActivityImpl(), new InventoryActivityImpl(), new PurchaseActivityImpl());
         return worker;
     }
 
