@@ -2,6 +2,7 @@ package com.dmedelacruz.storefront.purchase.service;
 
 import com.dmedelacruz.storefront.external.restclient.InventoryRestClient;
 import com.dmedelacruz.storemodel.RestResponse;
+import com.dmedelacruz.storemodel.inventory.InventoryProcessingException;
 import com.dmedelacruz.storemodel.inventory.UpdateInventoryRequest;
 import com.dmedelacruz.storemodel.inventory.UpdateInventoryResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +23,10 @@ public class InventoryServiceImpl implements InventoryService {
                 UpdateInventoryResponse content = response.getBody().getContent();
                 return content;
             } else {
-                //TODO Throw error
-                return null;
+                throw new InventoryProcessingException();
             }
         } catch (Exception e) {
-            //TODO Throw ActivityFailure
-            return null;
+            throw new InventoryProcessingException("Item Out of Stock");
         }
     }
 
@@ -39,12 +38,10 @@ public class InventoryServiceImpl implements InventoryService {
                 UpdateInventoryResponse content = response.getBody().getContent();
                 return content;
             } else {
-                //TODO Throw error
-                return null;
+                throw new InventoryProcessingException();
             }
         } catch (Exception e) {
-            //TODO Throw ActivityFailure
-            return null;
+            throw new InventoryProcessingException();
         }
     }
 }

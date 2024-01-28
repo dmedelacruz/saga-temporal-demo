@@ -23,14 +23,14 @@ public class ItemController {
 
     @PutMapping("/purchase")
     public ResponseEntity<RestResponse<UpdateInventoryResponse>> updateItemsForPurchase(@RequestBody UpdateInventoryRequest request) {
-        List<ItemDto> processedPurchase = itemService.processPurchase(request.getItems());
-        return ResponseEntity.ok(RestResponse.of(processedPurchase));
+        UpdateInventoryResponse updateInventoryResponse = itemService.processPurchase(request.getItems());
+        return ResponseEntity.ok(RestResponse.of(updateInventoryResponse));
     }
 
     @PutMapping("/reverse-purchase")
     public ResponseEntity<RestResponse<UpdateInventoryResponse>> reverseItemsPurchase(@RequestBody UpdateInventoryRequest request) {
-        List<ItemDto> processedReversePurchase = itemService.reversePurchase(request.getItems());
-        return ResponseEntity.ok(RestResponse.of(processedReversePurchase));
+        UpdateInventoryResponse updateInventoryResponse = itemService.reversePurchase(request.getItems());
+        return ResponseEntity.ok(RestResponse.of(updateInventoryResponse));
     }
 
 }

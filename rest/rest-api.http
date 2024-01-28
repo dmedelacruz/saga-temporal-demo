@@ -2,7 +2,26 @@ POST http://localhost:9000/store/purchase
 Content-Type: application/json
 
 {
-  "customerId": "97c17607-5edc-47ed-9274-46be85e51501"
+  "customerId": "97c17607-5edc-47ed-9274-46be85e51501",
+  "items" : [
+    {
+      "itemId": "e2664e03-341d-46dd-9e1d-ce6beb9b4736",
+      "qty" : 5
+    },
+    {
+      "itemId": "48d7b48a-4b2f-4a02-a562-877591522efa",
+      "qty" : 5
+    },
+    {
+      "itemId": "4e65af3b-3364-4b51-b25e-2a0925e1bcec",
+      "qty" : 5
+    }
+  ],
+  "paymentMethod": "CASH",
+  "paymentDetails": {
+    "paymentMethod": "CASH",
+    "amountPaid": 500
+  }
 }
 
 <> 2024-01-19T183335.200.json

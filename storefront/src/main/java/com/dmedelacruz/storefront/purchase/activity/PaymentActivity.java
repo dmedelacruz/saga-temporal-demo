@@ -1,5 +1,6 @@
 package com.dmedelacruz.storefront.purchase.activity;
 
+import com.dmedelacruz.storemodel.payment.PaymentProcessingException;
 import com.dmedelacruz.storemodel.payment.PaymentRequest;
 import io.temporal.activity.ActivityInterface;
 import io.temporal.activity.ActivityMethod;
@@ -19,7 +20,7 @@ public interface PaymentActivity {
             .setMaximumInterval(Duration.ofMinutes(1))
             .setBackoffCoefficient(2)
             .setMaximumAttempts(10)
-//            .setDoNotRetry(Exception.class.getName()) TODO indicate exceptions that you dont want to retry
+            .setDoNotRetry(PaymentProcessingException.class.getName()) // indicate exceptions that you dont want to retry
             .build();
 
     ActivityOptions paymentActivityOptions = ActivityOptions.newBuilder()

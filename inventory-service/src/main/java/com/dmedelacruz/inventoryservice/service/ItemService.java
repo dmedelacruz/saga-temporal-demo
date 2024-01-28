@@ -2,12 +2,13 @@ package com.dmedelacruz.inventoryservice.service;
 
 import com.dmedelacruz.storemodel.inventory.ItemDto;
 import com.dmedelacruz.storemodel.inventory.ItemQtyDto;
+import com.dmedelacruz.storemodel.inventory.UpdateInventoryResponse;
 
 import java.util.List;
 
 public interface ItemService {
 
-    List<ItemDto> processPurchase(List<ItemQtyDto> items);
-    List<ItemDto> reversePurchase(List<ItemQtyDto> items);
+    UpdateInventoryResponse processPurchase(List<ItemQtyDto> items);
+    UpdateInventoryResponse reversePurchase(List<ItemQtyDto> items);
 
 }

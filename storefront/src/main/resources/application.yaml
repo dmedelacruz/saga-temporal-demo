@@ -14,3 +14,6 @@ restclient:
   payment:
     name: PaymentRestClient
     url: http://localhost:9003/payment
+  notification:
+    name: NotificationRestClient
+    url: http://localhost:9004/notify

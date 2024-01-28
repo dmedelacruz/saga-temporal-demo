@@ -14,7 +14,7 @@ public interface OrderRestClient {
     @PostMapping
     ResponseEntity<RestResponse<CreateOrderResponse>> createOrder(@RequestBody CreateOrderRequest createOrderRequest);
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     ResponseEntity<RestResponse<UpdateOrderResponse>> updateOrderStatus(@PathVariable("id") String orderId, @RequestParam("status") String status);
 
 }

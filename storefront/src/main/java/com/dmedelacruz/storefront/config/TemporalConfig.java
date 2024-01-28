@@ -1,8 +1,6 @@
 package com.dmedelacruz.storefront.config;
 
-import com.dmedelacruz.storefront.purchase.activity.InventoryActivityImpl;
-import com.dmedelacruz.storefront.purchase.activity.OrderActivityImpl;
-import com.dmedelacruz.storefront.purchase.activity.PurchaseActivityImpl;
+import com.dmedelacruz.storefront.purchase.activity.*;
 import com.dmedelacruz.storefront.purchase.workflow.ProcessOrderWorkflow;
 import com.dmedelacruz.storefront.purchase.workflow.ProcessOrderWorkflowImpl;
 import com.dmedelacruz.storefront.purchase.workflow.PurchaseWorkflow;
@@ -83,7 +81,7 @@ public class TemporalConfig {
     public Worker processOrderWorkflow(WorkerFactory workerFactory) {
         Worker worker = workerFactory.newWorker(ProcessOrderWorkflow.TASK_QUEUE);
         worker.registerWorkflowImplementationTypes(ProcessOrderWorkflowImpl.class);
-        worker.registerActivitiesImplementations(new OrderActivityImpl(), new InventoryActivityImpl(), new PurchaseActivityImpl());
+        worker.registerActivitiesImplementations(new OrderActivityImpl(), new InventoryActivityImpl(), new PurchaseActivityImpl(), new PaymentActivityImpl(), new NotificationActivityImpl());
         return worker;
     }
 

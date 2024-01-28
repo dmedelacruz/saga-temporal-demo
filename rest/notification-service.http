@@ -1,0 +1,8 @@
+POST http://localhost:9004/notify/email
+Content-Type: application/json
+
+{
+  "customerId" : "97c17607-5edc-47ed-9274-46be85e51501",
+  "subject": "Purchase Success",
+  "message" : "Order Success"
+}

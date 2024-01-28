@@ -1,5 +1,6 @@
 package com.dmedelacruz.storefront.purchase.activity;
 
+import com.dmedelacruz.storemodel.inventory.InventoryProcessingException;
 import com.dmedelacruz.storemodel.inventory.UpdateInventoryRequest;
 import com.dmedelacruz.storemodel.inventory.UpdateInventoryResponse;
 import io.temporal.activity.ActivityInterface;
@@ -23,7 +24,7 @@ public interface InventoryActivity {
             .setMaximumInterval(Duration.ofMinutes(10))
             .setBackoffCoefficient(2)
             .setMaximumAttempts(10)
-//            .setDoNotRetry(Exception.class.getName()) TODO indicate exceptions that you dont want to retry
+            .setDoNotRetry(InventoryProcessingException.class.getName()) // indicate exceptions that you dont want to retry
             .build();
 
     ActivityOptions inventoryActivityOptions = ActivityOptions.newBuilder()

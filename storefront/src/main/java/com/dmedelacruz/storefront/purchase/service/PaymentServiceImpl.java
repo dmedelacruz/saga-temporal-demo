@@ -2,6 +2,7 @@ package com.dmedelacruz.storefront.purchase.service;
 
 import com.dmedelacruz.storefront.external.restclient.PaymentRestClient;
 import com.dmedelacruz.storemodel.RestResponse;
+import com.dmedelacruz.storemodel.payment.PaymentProcessingException;
 import com.dmedelacruz.storemodel.payment.PaymentRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +21,10 @@ public class PaymentServiceImpl implements PaymentService {
             if (response.getStatusCode().is2xxSuccessful()) {
                 return response.getBody().getContent();
             } else {
-                //TODO throw ActivityFailure
-                return null;
+                throw new PaymentProcessingException("Payment Failed");
             }
         } catch (Exception e) {
-            //TODO throw ActivityFailure
-            return null;
+            throw new PaymentProcessingException("Payment Failed");
         }
     }
 }
